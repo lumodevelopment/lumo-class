@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joining Lumo Class...</title>
     <link
       rel="icon"
       href="https://lumodevelopment.github.io/lumo-assets/AuthFavicon.png"
       type="image/png"
     />
-    <title>Privacy Policy - Lumo</title>
     <style>
       body,
       table,
@@ -50,14 +50,19 @@
       body {
         margin: 0;
         padding: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: #f2f2f7;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
       }
-      .email-container {
+      .page-container {
         max-width: 600px;
         margin: 0 auto;
         background-color: #f2f2f7;
+        width: 100%;
       }
       .content-wrapper {
         background-color: #ffffff;
@@ -79,6 +84,7 @@
       }
       .main-content {
         padding: 0 32px 32px 32px;
+        text-align: center;
       }
       .title {
         color: #09090b;
@@ -90,107 +96,64 @@
           Helvetica, Arial, sans-serif;
         letter-spacing: -0.02em;
       }
-      .subtitle {
+      .message {
         color: rgba(9, 9, 11, 0.7);
         font-size: 16px;
         font-weight: 400;
         line-height: 1.5;
-        margin: 0 0 0 0;
+        margin: 0 0 32px 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
         letter-spacing: -0.02em;
       }
-      .button-checkbox-container {
-        margin: 32px 0 0px 0;
+      .spinner-container {
+        margin: 32px 0;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .button-checkbox {
-        display: none;
-      }
-      .button-checkbox-label {
-        display: inline-flex;
-        align-items: center;
         justify-content: center;
-        padding: 14px 18px;
-        gap: 10px;
-        border-radius: 14px;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        background: radial-gradient(
-          71.4% 100% at 49.84% 0%,
-          #8bc2ff 0%,
-          #3192fd 100%
-        );
-        box-shadow: 0px 1.5px 2px 0px rgba(0, 0, 0, 0.2),
-          0px 2.5px 0px 0px rgba(255, 255, 255, 0.2) inset,
-          0px 4px 3px 0px rgba(255, 255, 255, 0.2) inset;
-        color: #fff;
-        text-align: center;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-        font-size: 17px;
-        font-style: normal;
-        font-weight: 510;
-        line-height: 100%;
-        letter-spacing: -0.02em;
-        cursor: pointer;
-        user-select: none;
-        transition: opacity 0.2s;
-        margin-bottom: 0;
       }
-      .button-checkbox:disabled + .button-checkbox-label {
-        opacity: 0.5;
-        pointer-events: none;
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(49, 146, 253, 0.15);
+        border-top: 4px solid #3192fd;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
       }
-      .button-checkbox-label.verified {
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        background: linear-gradient(180deg, #72cd75 0.3%, #1f8f5d 99.7%), #fff;
-        box-shadow: 0px 2.5px 0px 0px rgba(255, 255, 255, 0.25) inset,
-          0px 1.5px 2px 0px rgba(0, 0, 0, 0.15);
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
-      .alternative-text {
+      .fallback {
+        margin-top: 24px;
+      }
+      .fallback-text {
         color: rgba(9, 9, 11, 0.6);
         font-size: 14px;
         font-weight: 400;
         line-height: 1.5;
-        margin: 24px 0 8px 0;
+        margin: 0 0 8px 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
         letter-spacing: -0.02em;
       }
-      .url-text {
+      .fallback a {
         color: #3192fd;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.5;
-        word-break: break-all;
+        text-decoration: none;
         background-color: rgba(49, 146, 253, 0.05);
         padding: 12px;
         border-radius: 8px;
         border: 1px solid rgba(49, 146, 253, 0.15);
-        margin-bottom: 0px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-        letter-spacing: -0.02em;
-      }
-      .privacy-content {
-        color: #09090b;
-        font-size: 16px;
+        display: inline-block;
+        font-size: 14px;
         font-weight: 400;
-        line-height: 1.6;
-        margin: 32px 0 0 0;
+        line-height: 1.5;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif;
         letter-spacing: -0.02em;
-        white-space: pre-line;
-      }
-      .privacy-content h3 {
-        color: #09090b;
-        font-size: 20px;
-        font-weight: 600;
-        margin: 32px 0 16px 0;
-        line-height: 1.3;
       }
       .footer {
         padding: 24px 32px;
@@ -223,71 +186,72 @@
         .title {
           font-size: 24px;
         }
-        .subtitle {
+        .message {
           font-size: 15px;
-        }
-        .button-checkbox-label {
-          width: 100%;
-          box-sizing: border-box;
-          padding: 16px 24px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="email-container">
+    <div class="page-container">
       <div class="content-wrapper">
         <div class="header">
           <div class="logo">
             <img
               src="https://lumodevelopment.github.io/lumo-assets/AuthHeaderTag.png"
-              alt="Lumo – Name Tag"
+              alt="Lumo – Beta"
               width="109"
               height="30"
             />
           </div>
         </div>
         <div class="main-content">
-          <h1 class="title">Privacy Policy</h1>
-          <!--<p class="subtitle">
-            This policy explains our practices regarding the collection, use, and disclosure of your information.
-          </p>-->
-          <p class="subtitle">
-            TL;DR: Lumo collects the info you provide (personal data, class
-            information, and user-generated content) and some technical/device
-            data solely to run the app. User-generated content is visible to
-            classmates, securely stored on our servers, and encrypted in
-            transit. We don't sell your data or use it for ads, and you have
-            in-app control over access, protection, and deletion of your data. A
-            small set of anonymized analytical data is collected solely for the
-            Developers "Maturaarbeit" to evaluate the educational effectiveness of Lumo.
-          </p>
-          <div class="privacy-content" id="privacyContent">
-            Loading privacy policy...
+          <h1 class="title">Joining Lumo Class...</h1>
+          <p class="message">Redirecting you to Lumo...</p>
+          <div class="spinner-container">
+            <div class="spinner"></div>
+          </div>
+          <div class="fallback">
+            <p class="fallback-text">If you're not redirected automatically:</p>
+            <a href="https://apps.apple.com/app/id6749280489"
+              >Download Lumo from App Store</a
+            >
           </div>
         </div>
         <div class="footer">
-          <p class="footer-text">Lumo for Students</p>
+          <p class="footer-text">
+            If you didn't request to join a Lumo class, you can safely leave
+            this page.
+          </p>
         </div>
       </div>
     </div>
+
     <script>
-      // Fetch and display the privacy policy content
-      fetch("https://lumodevelopment.github.io/lumo-assets/privacy_policy.txt")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to load privacy policy");
-          }
-          return response.text();
-        })
-        .then((text) => {
-          document.getElementById("privacyContent").textContent = text;
-        })
-        .catch((error) => {
-          console.error("Error loading privacy policy:", error);
-          document.getElementById("privacyContent").textContent =
-            "Error loading privacy policy. Please try refreshing the page or contact support@lumo.ooo if the problem persists.";
-        });
+      // Extract class code from URL path
+      const pathParts = window.location.pathname.split("/");
+      const classCode = pathParts[pathParts.length - 1];
+
+      // Validate class code (8 alphanumeric characters)
+      const isValidClassCode = /^[A-Za-z0-9]{8}$/.test(classCode);
+
+      if (isValidClassCode) {
+        // Try to redirect to the app
+        const appURL = `lumo://classcode:${classCode.toUpperCase()}`;
+
+        // Immediate redirect attempt
+        window.location.href = appURL;
+
+        // Fallback after 3 seconds - redirect to App Store
+        setTimeout(() => {
+          window.location.href = "https://apps.apple.com/app/id6749280489";
+        }, 3000);
+      } else {
+        // Invalid or missing class code - redirect to App Store
+        setTimeout(() => {
+          window.location.href = "https://apps.apple.com/app/id6749280489";
+        }, 1500);
+      }
     </script>
   </body>
 </html>
