@@ -229,28 +229,55 @@
 
     <script>
       // Extract class code from URL path
-      const pathParts = window.location.pathname.split("/");
-      const classCode = pathParts[pathParts.length - 1];
+      // Handle both direct access and forwarded URLs
+      let classCode = "";
+
+      // Try to get class code from various URL formats:
+      // - https://lumodevelopment.github.io/lumo-class/ABC12345
+      // - https://class.lumo.ooo/ABC12345 (forwarded)
+      const pathParts = window.location.pathname
+        .split("/")
+        .filter((part) => part !== "");
+
+      // If we're on lumodevelopment.github.io/lumo-class/CODE
+      if (pathParts.length >= 2 && pathParts[0] === "lumo-class") {
+        classCode = pathParts[1];
+      }
+      // If we're on class.lumo.ooo/CODE (direct)
+      else if (pathParts.length >= 1) {
+        classCode = pathParts[0];
+      }
 
       // Validate class code (8 alphanumeric characters)
       const isValidClassCode = /^[A-Za-z0-9]{8}$/.test(classCode);
 
+      console.log(
+        "Detected class code:",
+        classCode,
+        "Valid:",
+        isValidClassCode
+      );
+
       if (isValidClassCode) {
         // Try to redirect to the app
         const appURL = `lumo://classcode:${classCode.toUpperCase()}`;
+
+        console.log("Redirecting to:", appURL);
 
         // Immediate redirect attempt
         window.location.href = appURL;
 
         // Fallback after 3 seconds - redirect to App Store
         setTimeout(() => {
+          console.log("Fallback: redirecting to App Store");
           window.location.href = "https://apps.apple.com/app/id6749280489";
-        }, 5000);
+        }, 3000);
       } else {
         // Invalid or missing class code - redirect to App Store
+        console.log("Invalid class code, redirecting to App Store");
         setTimeout(() => {
           window.location.href = "https://apps.apple.com/app/id6749280489";
-        }, 2000);
+        }, 1500);
       }
     </script>
   </body>
