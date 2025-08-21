@@ -101,8 +101,16 @@
             // Update the message to show what we're doing
             document.querySelector('.message').textContent = `Opening class ${classCode.toUpperCase()} in Lumo...`;
             
-            // Immediate redirect attempt
-            window.location.href = appURL;
+            // Create a hidden iframe to trigger the deep link
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = appURL;
+            document.body.appendChild(iframe);
+            
+            // Also try window.location as backup
+            setTimeout(() => {
+                window.location.href = appURL;
+            }, 100);
             
             // Fallback after 3 seconds - redirect to App Store
             setTimeout(() => {
