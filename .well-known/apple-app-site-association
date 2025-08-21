@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "MTG62W6KP7.com.lumodevelopment.Lumo",
+        "paths": ["/*"]
+      }
+    ]
+  }
+}
