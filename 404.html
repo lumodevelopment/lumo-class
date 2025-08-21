@@ -1,131 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joining Lumo Class...</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+          sans-serif;
+      }
+      .container {
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .logo {
+        font-size: 48px;
+        font-weight: 700;
+        color: #007aff;
+        margin-bottom: 20px;
+      }
+      .message {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #e0e0e0;
+        border-top: 4px solid #007aff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .container {
-            text-align: center;
-            padding: 40px 20px;
+        100% {
+          transform: rotate(360deg);
         }
-        .logo {
-            font-size: 48px;
-            font-weight: 700;
-            color: #007AFF;
-            margin-bottom: 20px;
-        }
-        .message {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e0e0e0;
-            border-top: 4px solid #007AFF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .fallback {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #666;
-        }
-        .fallback a {
-            color: #007AFF;
-            text-decoration: none;
-        }
+      }
+      .fallback {
+        margin-top: 30px;
+        font-size: 14px;
+        color: #666;
+      }
+      .fallback a {
+        color: #007aff;
+        text-decoration: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="logo">Lumo</div>
-        <div class="message">Redirecting you to Lumo...</div>
-        <div class="spinner"></div>
-        <div class="fallback">
-            <p>If you're not redirected automatically:</p>
-            <p><a href="https://apps.apple.com/app/id6749280489">Download Lumo from App Store</a></p>
-        </div>
+      <div class="logo">Lumo</div>
+      <div class="message">Redirecting you to Lumo...</div>
+      <div class="spinner"></div>
+      <div class="fallback">
+        <p>If you're not redirected automatically:</p>
+        <p>
+          <a href="https://apps.apple.com/app/id6749280489"
+            >Download Lumo from App Store</a
+          >
+        </p>
+      </div>
     </div>
 
     <script>
-        // Extract class code from URL path
-        // Handle both direct access and forwarded URLs
-        let classCode = '';
-        
-        // Try to get class code from various URL formats:
-        // - https://lumodevelopment.github.io/lumo-class/ABC12345
-        // - https://class.lumo.ooo/ABC12345 (forwarded)
-        const pathParts = window.location.pathname.split('/').filter(part => part !== '');
-        
-        console.log('Full pathname:', window.location.pathname);
-        console.log('Path parts:', pathParts);
-        
-        // If we're on lumodevelopment.github.io/lumo-class/CODE
-        if (pathParts.length >= 2 && pathParts[0] === 'lumo-class') {
-            classCode = pathParts[1];
-        }
-        // If we're on class.lumo.ooo/CODE (direct)
-        else if (pathParts.length >= 1) {
-            classCode = pathParts[0];
-        }
-        
-        // Validate class code (8 alphanumeric characters)
-        const isValidClassCode = /^[A-Za-z0-9]{8}$/.test(classCode);
-        
-        console.log('Detected class code:', classCode, 'Valid:', isValidClassCode);
-        
-        if (isValidClassCode) {
-            // Try to redirect to the app
-            const appURL = `lumo://classcode:${classCode.toUpperCase()}`;
-            
-            console.log('Redirecting to:', appURL);
-            
-            // Update the message to show what we're doing
-            document.querySelector('.message').textContent = `Opening class ${classCode.toUpperCase()} in Lumo...`;
-            
-            // Create a hidden iframe to trigger the deep link
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = appURL;
-            document.body.appendChild(iframe);
-            
-            // Also try window.location as backup
+      // Extract class code from URL path
+      // Handle both direct access and forwarded URLs
+      let classCode = "";
+
+      // Try to get class code from various URL formats:
+      // - https://lumodevelopment.github.io/lumo-class/ABC12345
+      // - https://class.lumo.ooo/ABC12345 (forwarded)
+      const pathParts = window.location.pathname
+        .split("/")
+        .filter((part) => part !== "");
+
+      console.log("Full pathname:", window.location.pathname);
+      console.log("Path parts:", pathParts);
+
+      // If we're on lumodevelopment.github.io/lumo-class/CODE
+      if (pathParts.length >= 2 && pathParts[0] === "lumo-class") {
+        classCode = pathParts[1];
+      }
+      // If we're on class.lumo.ooo/CODE (direct)
+      else if (pathParts.length >= 1) {
+        classCode = pathParts[0];
+      }
+
+      // Validate class code (8 alphanumeric characters)
+      const isValidClassCode = /^[A-Za-z0-9]{8}$/.test(classCode);
+
+      console.log(
+        "Detected class code:",
+        classCode,
+        "Valid:",
+        isValidClassCode
+      );
+
+      if (isValidClassCode) {
+        // Try to redirect to the app
+        const appURL = `lumo://classcode:${classCode.toUpperCase()}`;
+
+        console.log("Redirecting to:", appURL);
+
+        // Update the message to show what we're doing
+        document.querySelector(
+          ".message"
+        ).textContent = `Opening class ${classCode.toUpperCase()} in Lumo...`;
+
+        // Try multiple methods to trigger the deep link
+
+        // Method 1: Try creating a temporary link and clicking it
+        const link = document.createElement("a");
+        link.href = appURL;
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Method 2: Use window.open as fallback
+        setTimeout(() => {
+          try {
+            const popup = window.open(appURL, "_blank");
+            // Close the popup immediately if it opens
             setTimeout(() => {
-                window.location.href = appURL;
+              if (popup) popup.close();
             }, 100);
-            
-            // Fallback after 3 seconds - redirect to App Store
-            setTimeout(() => {
-                console.log('Fallback: redirecting to App Store');
-                document.querySelector('.message').textContent = 'App not installed? Redirecting to App Store...';
-                window.location.href = "https://apps.apple.com/app/id6749280489";
-            }, 3000);
-        } else {
-            // Invalid or missing class code - redirect to App Store
-            console.log('Invalid or missing class code, redirecting to App Store');
-            document.querySelector('.message').textContent = 'Invalid class code. Redirecting to App Store...';
-            setTimeout(() => {
-                window.location.href = "https://apps.apple.com/app/id6749280489";
-            }, 1500);
-        }
+          } catch (e) {
+            console.log("window.open failed:", e);
+          }
+        }, 100);
+
+        // Method 3: Traditional location change as final fallback
+        setTimeout(() => {
+          window.location.href = appURL;
+        }, 200);
+
+        // Fallback after 3 seconds - redirect to App Store
+        setTimeout(() => {
+          console.log("Fallback: redirecting to App Store");
+          document.querySelector(".message").textContent =
+            "App not installed? Redirecting to App Store...";
+          window.location.href = "https://apps.apple.com/app/id6749280489";
+        }, 3000);
+      } else {
+        // Invalid or missing class code - redirect to App Store
+        console.log("Invalid or missing class code, redirecting to App Store");
+        document.querySelector(".message").textContent =
+          "Invalid class code. Redirecting to App Store...";
+        setTimeout(() => {
+          window.location.href = "https://apps.apple.com/app/id6749280489";
+        }, 1500);
+      }
     </script>
-</body>
+  </body>
 </html>
